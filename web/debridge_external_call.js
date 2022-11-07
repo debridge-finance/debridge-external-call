@@ -1269,7 +1269,7 @@ function initSync(module) {
 
 async function init(input) {
     if (typeof input === 'undefined') {
-        input = new URL('debridge_external_call_bg.wasm', import.meta.url);
+        input = new URL('debridge_external_call_bg.wasm');
     }
     const imports = getImports();
 
