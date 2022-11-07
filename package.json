@@ -1,0 +1,20 @@
+{
+  "name": "debridge-external-call",
+  "version": "0.0.0",
+  "module": "./web/debridge_external_call.js",
+  "main": "./node/debridge_external_call.js",
+  "types": "./web/debridge_external_call.d.ts",
+  "exports": {
+    ".": {
+      "import": "./web/debridge_external_call.js",
+      "require": "./node/debridge_external_call.js"
+    }
+  },
+  "files": [
+    "./node/debridge_external_call.js",
+    "./node/debridge_external_call_bg.wasm",
+    "./web/debridge_external_call.js",
+    "./web/debridge_external_call_bg.wasm"
+  ],
+  "sideEffects": false
+}
