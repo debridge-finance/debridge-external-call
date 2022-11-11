@@ -1,5 +1,5 @@
 {
-  "name": "debridge-external-call",
+  "name": "@debridge-finance/debridge-external-call",
   "version": "0.0.0",
   "module": "./web/debridge_external_call.js",
   "main": "./node/debridge_external_call.js",
