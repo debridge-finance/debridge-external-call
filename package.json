@@ -1,6 +1,20 @@
 {
   "name": "@debridge-finance/debridge-external-call",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "author": "deBridge",
+  "license": "GPL-3.0-only",
+  "homepage": "https://debridge.finance",
+
+  "repository": {
+    "type": "git",
+    "url": "github:debridge-finance/debridge-external-call"
+  },
+  "keywords": [
+    "solana",
+    "deBridge",
+    "blockchain"
+  ],
+
   "module": "./web/debridge_external_call.js",
   "main": "./node/debridge_external_call.js",
   "types": "./web/debridge_external_call.d.ts",
@@ -10,5 +24,11 @@
       "require": "./node/debridge_external_call.js"
     }
   },
+  "files": [
+    "node/**",
+    "web/**",
+    "LICENSE",
+    "README.md"
+  ],
   "sideEffects": false
 }
