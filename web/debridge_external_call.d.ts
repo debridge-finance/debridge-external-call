@@ -31,36 +31,6 @@ export function get_external_call_instructions(storage: Uint8Array, current_exte
 */
 export function get_external_call_account_meta(storage: Uint8Array, current_external_call_offset: number, external_call_len: number, count: number, submission_account: any, submission_auth_address: any, submission_wallet: any): ExecuteContext;
 /**
-* Handler for `console.log` invocations.
-*
-* If a test is currently running it takes the `args` array and stringifies
-* it and appends it to the current output of the test. Otherwise it passes
-* the arguments to the original `console.log` function, psased as
-* `original`.
-* @param {Array<any>} args
-*/
-export function __wbgtest_console_log(args: Array<any>): void;
-/**
-* Handler for `console.debug` invocations. See above.
-* @param {Array<any>} args
-*/
-export function __wbgtest_console_debug(args: Array<any>): void;
-/**
-* Handler for `console.info` invocations. See above.
-* @param {Array<any>} args
-*/
-export function __wbgtest_console_info(args: Array<any>): void;
-/**
-* Handler for `console.warn` invocations. See above.
-* @param {Array<any>} args
-*/
-export function __wbgtest_console_warn(args: Array<any>): void;
-/**
-* Handler for `console.error` invocations. See above.
-* @param {Array<any>} args
-*/
-export function __wbgtest_console_error(args: Array<any>): void;
-/**
 */
 export class CalculationError {
   free(): void;
@@ -199,46 +169,6 @@ export class ExternalInstructionWrapperIterator {
 */
   next(): ExternalInstructionWrapper | undefined;
 }
-/**
-* Runtime test harness support instantiated in JS.
-*
-* The node.js entry script instantiates a `Context` here which is used to
-* drive test execution.
-*/
-export class WasmBindgenTestContext {
-  free(): void;
-/**
-* Creates a new context ready to run tests.
-*
-* A `Context` is the main structure through which test execution is
-* coordinated, and this will collect output and results for all executed
-* tests.
-*/
-  constructor();
-/**
-* Inform this context about runtime arguments passed to the test
-* harness.
-*
-* Eventually this will be used to support flags, but for now it's just
-* used to support test filters.
-* @param {any[]} args
-*/
-  args(args: any[]): void;
-/**
-* Executes a list of tests, returning a promise representing their
-* eventual completion.
-*
-* This is the main entry point for executing tests. All the tests passed
-* in are the JS `Function` object that was plucked off the
-* `WebAssembly.Instance` exports list.
-*
-* The promise returned resolves to either `true` if all tests passed or
-* `false` if at least one test failed.
-* @param {any[]} tests
-* @returns {Promise<any>}
-*/
-  run(tests: any[]): Promise<any>;
-}
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
@@ -260,8 +190,8 @@ export interface InitOutput {
   readonly __wbg_executecontext_free: (a: number) => void;
   readonly executecontext_remaning_accounts: (a: number, b: number) => void;
   readonly executecontext_reversed_subsitution_bumps: (a: number) => number;
-  readonly get_external_call_instructions: (a: number, b: number, c: number, d: number, e: number) => void;
-  readonly get_external_call_account_meta: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number) => void;
+  readonly get_external_call_instructions: (a: number, b: number, c: number, d: number) => void;
+  readonly get_external_call_account_meta: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => void;
   readonly __wbg_costcalculationinput_free: (a: number) => void;
   readonly __wbg_get_costcalculationinput_native_sender_len: (a: number) => number;
   readonly __wbg_set_costcalculationinput_native_sender_len: (a: number, b: number) => void;
@@ -293,28 +223,18 @@ export interface InitOutput {
   readonly costcalculationinput_calculate_sol_relative_price_with_profit: (a: number) => number;
   readonly costcalculationinput_calculate_recomended_claim_execution_fee: (a: number) => number;
   readonly costcalculationinput_calculate_recomended_reward_for_external_instruction: (a: number, b: number) => number;
-  readonly costcalculationinput_calculate_recomended_reward_for_external_call: (a: number, b: number, c: number, d: number) => void;
+  readonly costcalculationinput_calculate_recomended_reward_for_external_call: (a: number, b: number, c: number) => void;
   readonly __wbg_calculationerror_free: (a: number) => void;
-  readonly externalinstructionwrapper_reward: (a: number) => number;
   readonly externalinstructionwrapper_set_reward: (a: number, b: number) => void;
-  readonly __wbg_wasmbindgentestcontext_free: (a: number) => void;
-  readonly wasmbindgentestcontext_new: () => number;
-  readonly wasmbindgentestcontext_args: (a: number, b: number, c: number) => void;
-  readonly wasmbindgentestcontext_run: (a: number, b: number, c: number) => number;
-  readonly __wbgtest_console_log: (a: number) => void;
-  readonly __wbgtest_console_debug: (a: number) => void;
-  readonly __wbgtest_console_info: (a: number) => void;
-  readonly __wbgtest_console_warn: (a: number) => void;
-  readonly __wbgtest_console_error: (a: number) => void;
+  readonly externalinstructionwrapper_reward: (a: number) => number;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_export_2: WebAssembly.Table;
-  readonly _dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h319d14d941a1f9aa: (a: number, b: number, c: number) => void;
+  readonly _dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h4c6c1616b85e20a4: (a: number, b: number, c: number) => void;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number) => void;
-  readonly wasm_bindgen__convert__closures__invoke3_mut__h79045d2b52e0bc27: (a: number, b: number, c: number, d: number, e: number) => void;
   readonly __wbindgen_exn_store: (a: number) => void;
-  readonly wasm_bindgen__convert__closures__invoke2_mut__h3ffd68270ad1bbb5: (a: number, b: number, c: number, d: number) => void;
+  readonly wasm_bindgen__convert__closures__invoke2_mut__h3878fb7d760359b2: (a: number, b: number, c: number, d: number) => void;
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;
