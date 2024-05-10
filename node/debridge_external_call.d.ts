@@ -46,15 +46,17 @@ export class CostCalculationInput {
 * @param {bigint} solana_rent_lamports_per_byte_year
 * @param {number} solana_exemption_threshold
 * @param {bigint} solana_signatures_rent
+* @param {bigint} expected_priority_fee_lamports_per_tx
 * @param {number} solana_nominal_price
 * @param {number} asset_nominal_price
 * @param {number} asset_decimals
 * @param {boolean} is_bridge_initialized
 * @param {boolean} is_receiver_wallet_initialized
+* @param {boolean} is_fallback_wallet_initialized
 * @param {number} profitable_multiplier
 * @param {bigint | undefined} external_call_len
 */
-  constructor(native_sender_len: number, is_required_temp_rent_cost: boolean, confirmation_count: number, solana_rent_lamports_per_byte_year: bigint, solana_exemption_threshold: number, solana_signatures_rent: bigint, solana_nominal_price: number, asset_nominal_price: number, asset_decimals: number, is_bridge_initialized: boolean, is_receiver_wallet_initialized: boolean, profitable_multiplier: number, external_call_len?: bigint);
+  constructor(native_sender_len: number, is_required_temp_rent_cost: boolean, confirmation_count: number, solana_rent_lamports_per_byte_year: bigint, solana_exemption_threshold: number, solana_signatures_rent: bigint, expected_priority_fee_lamports_per_tx: bigint, solana_nominal_price: number, asset_nominal_price: number, asset_decimals: number, is_bridge_initialized: boolean, is_receiver_wallet_initialized: boolean, is_fallback_wallet_initialized: boolean, profitable_multiplier: number, external_call_len?: bigint);
 /**
 * @returns {number}
 */
@@ -84,10 +86,16 @@ export class CostCalculationInput {
   confirmation_count: number;
 /**
 */
+  expected_priority_fee_lamports_per_tx: bigint;
+/**
+*/
   external_call_len?: bigint;
 /**
 */
   is_bridge_initialized: boolean;
+/**
+*/
+  is_fallback_wallet_initialized: boolean;
 /**
 */
   is_receiver_wallet_initialized: boolean;

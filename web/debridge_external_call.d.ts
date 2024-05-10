@@ -46,15 +46,17 @@ export class CostCalculationInput {
 * @param {bigint} solana_rent_lamports_per_byte_year
 * @param {number} solana_exemption_threshold
 * @param {bigint} solana_signatures_rent
+* @param {bigint} expected_priority_fee_lamports_per_tx
 * @param {number} solana_nominal_price
 * @param {number} asset_nominal_price
 * @param {number} asset_decimals
 * @param {boolean} is_bridge_initialized
 * @param {boolean} is_receiver_wallet_initialized
+* @param {boolean} is_fallback_wallet_initialized
 * @param {number} profitable_multiplier
 * @param {bigint | undefined} external_call_len
 */
-  constructor(native_sender_len: number, is_required_temp_rent_cost: boolean, confirmation_count: number, solana_rent_lamports_per_byte_year: bigint, solana_exemption_threshold: number, solana_signatures_rent: bigint, solana_nominal_price: number, asset_nominal_price: number, asset_decimals: number, is_bridge_initialized: boolean, is_receiver_wallet_initialized: boolean, profitable_multiplier: number, external_call_len?: bigint);
+  constructor(native_sender_len: number, is_required_temp_rent_cost: boolean, confirmation_count: number, solana_rent_lamports_per_byte_year: bigint, solana_exemption_threshold: number, solana_signatures_rent: bigint, expected_priority_fee_lamports_per_tx: bigint, solana_nominal_price: number, asset_nominal_price: number, asset_decimals: number, is_bridge_initialized: boolean, is_receiver_wallet_initialized: boolean, is_fallback_wallet_initialized: boolean, profitable_multiplier: number, external_call_len?: bigint);
 /**
 * @returns {number}
 */
@@ -84,10 +86,16 @@ export class CostCalculationInput {
   confirmation_count: number;
 /**
 */
+  expected_priority_fee_lamports_per_tx: bigint;
+/**
+*/
   external_call_len?: bigint;
 /**
 */
   is_bridge_initialized: boolean;
+/**
+*/
+  is_fallback_wallet_initialized: boolean;
 /**
 */
   is_receiver_wallet_initialized: boolean;
@@ -178,8 +186,9 @@ export interface InitOutput {
   readonly __wbg_externalinstructionwrapperiterator_free: (a: number) => void;
   readonly externalinstructionwrapperiterator_next: (a: number) => number;
   readonly externalinstructionwrapper_new: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number) => void;
-  readonly externalinstructionwrapper_expenses: (a: number, b: number) => void;
   readonly externalinstructionwrapper_set_expenses: (a: number, b: number) => void;
+  readonly externalinstructionwrapper_reward: (a: number) => number;
+  readonly externalinstructionwrapper_set_reward: (a: number, b: number) => void;
   readonly externalinstructionwrapper_instruction: (a: number, b: number) => void;
   readonly externalinstructionwrapper_set_instruction: (a: number, b: number, c: number) => void;
   readonly externalinstructionwrapper_close_spl_wallet: (a: number, b: number, c: number) => void;
@@ -205,6 +214,8 @@ export interface InitOutput {
   readonly __wbg_set_costcalculationinput_solana_exemption_threshold: (a: number, b: number) => void;
   readonly __wbg_get_costcalculationinput_solana_signatures_rent: (a: number) => number;
   readonly __wbg_set_costcalculationinput_solana_signatures_rent: (a: number, b: number) => void;
+  readonly __wbg_get_costcalculationinput_expected_priority_fee_lamports_per_tx: (a: number) => number;
+  readonly __wbg_set_costcalculationinput_expected_priority_fee_lamports_per_tx: (a: number, b: number) => void;
   readonly __wbg_get_costcalculationinput_solana_nominal_price: (a: number) => number;
   readonly __wbg_set_costcalculationinput_solana_nominal_price: (a: number, b: number) => void;
   readonly __wbg_get_costcalculationinput_asset_nominal_price: (a: number) => number;
@@ -215,26 +226,27 @@ export interface InitOutput {
   readonly __wbg_set_costcalculationinput_is_bridge_initialized: (a: number, b: number) => void;
   readonly __wbg_get_costcalculationinput_is_receiver_wallet_initialized: (a: number) => number;
   readonly __wbg_set_costcalculationinput_is_receiver_wallet_initialized: (a: number, b: number) => void;
+  readonly __wbg_get_costcalculationinput_is_fallback_wallet_initialized: (a: number) => number;
+  readonly __wbg_set_costcalculationinput_is_fallback_wallet_initialized: (a: number, b: number) => void;
   readonly __wbg_get_costcalculationinput_profitable_multiplier: (a: number) => number;
   readonly __wbg_set_costcalculationinput_profitable_multiplier: (a: number, b: number) => void;
   readonly __wbg_get_costcalculationinput_external_call_len: (a: number, b: number) => void;
   readonly __wbg_set_costcalculationinput_external_call_len: (a: number, b: number, c: number) => void;
-  readonly costcalculationinput_new: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number, m: number, n: number) => number;
+  readonly costcalculationinput_new: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number, m: number, n: number, o: number, p: number) => number;
   readonly costcalculationinput_calculate_sol_relative_price_with_profit: (a: number) => number;
   readonly costcalculationinput_calculate_recomended_claim_execution_fee: (a: number) => number;
   readonly costcalculationinput_calculate_recomended_reward_for_external_instruction: (a: number, b: number) => number;
   readonly costcalculationinput_calculate_recomended_reward_for_external_call: (a: number, b: number, c: number) => void;
   readonly __wbg_calculationerror_free: (a: number) => void;
-  readonly externalinstructionwrapper_set_reward: (a: number, b: number) => void;
-  readonly externalinstructionwrapper_reward: (a: number) => number;
-  readonly __wbindgen_malloc: (a: number) => number;
-  readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
+  readonly externalinstructionwrapper_expenses: (a: number, b: number) => void;
+  readonly __wbindgen_malloc: (a: number, b: number) => number;
+  readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
   readonly __wbindgen_export_2: WebAssembly.Table;
-  readonly _dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h4c6c1616b85e20a4: (a: number, b: number, c: number) => void;
+  readonly wasm_bindgen__convert__closures__invoke1_mut__h8ee98e8a5488f2f4: (a: number, b: number, c: number) => void;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
-  readonly __wbindgen_free: (a: number, b: number) => void;
+  readonly __wbindgen_free: (a: number, b: number, c: number) => void;
   readonly __wbindgen_exn_store: (a: number) => void;
-  readonly wasm_bindgen__convert__closures__invoke2_mut__h3878fb7d760359b2: (a: number, b: number, c: number, d: number) => void;
+  readonly wasm_bindgen__convert__closures__invoke2_mut__h094bb2c70e93e168: (a: number, b: number, c: number, d: number) => void;
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;
@@ -256,4 +268,4 @@ export function initSync(module: SyncInitInput): InitOutput;
 *
 * @returns {Promise<InitOutput>}
 */
-export default function init (module_or_path?: InitInput | Promise<InitInput>): Promise<InitOutput>;
+export default function __wbg_init (module_or_path?: InitInput | Promise<InitInput>): Promise<InitOutput>;
