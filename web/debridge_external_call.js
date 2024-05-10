@@ -1022,7 +1022,7 @@ async function __wbg_init(input) {
     if (wasm !== undefined) return wasm;
 
     if (typeof input === 'undefined') {
-        input = new URL('debridge_external_call_bg.wasm', import.meta.url);
+        input = new URL('debridge_external_call_bg.wasm');
     }
     const imports = __wbg_get_imports();
 
