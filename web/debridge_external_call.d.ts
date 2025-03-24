@@ -173,9 +173,24 @@ export class ExternalInstructionWrapper {
 export class ExternalInstructionWrapperIterator {
   free(): void;
 /**
-* @returns {ExternalInstructionWrapper | undefined}
+* @returns {ExternalInstructionWrapperWithPosition | undefined}
 */
-  next(): ExternalInstructionWrapper | undefined;
+  next(): ExternalInstructionWrapperWithPosition | undefined;
+}
+/**
+*/
+export class ExternalInstructionWrapperWithPosition {
+  free(): void;
+/**
+* @returns {ExternalInstructionWrapper}
+*/
+  instruction(): ExternalInstructionWrapper;
+/**
+*/
+  readonly position_end: bigint;
+/**
+*/
+  readonly position_start: bigint;
 }
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
@@ -183,6 +198,10 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly __wbg_externalinstructionwrapper_free: (a: number) => void;
+  readonly __wbg_externalinstructionwrapperwithposition_free: (a: number) => void;
+  readonly externalinstructionwrapperwithposition_position_start: (a: number) => number;
+  readonly externalinstructionwrapperwithposition_position_end: (a: number) => number;
+  readonly externalinstructionwrapperwithposition_instruction: (a: number) => number;
   readonly __wbg_externalinstructionwrapperiterator_free: (a: number) => void;
   readonly externalinstructionwrapperiterator_next: (a: number) => number;
   readonly externalinstructionwrapper_new: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number) => void;
@@ -242,11 +261,11 @@ export interface InitOutput {
   readonly __wbindgen_malloc: (a: number, b: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
   readonly __wbindgen_export_2: WebAssembly.Table;
-  readonly wasm_bindgen__convert__closures__invoke1_mut__h8ee98e8a5488f2f4: (a: number, b: number, c: number) => void;
+  readonly _dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h42ff0aa69fe579c9: (a: number, b: number, c: number) => void;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number, c: number) => void;
   readonly __wbindgen_exn_store: (a: number) => void;
-  readonly wasm_bindgen__convert__closures__invoke2_mut__h094bb2c70e93e168: (a: number, b: number, c: number, d: number) => void;
+  readonly wasm_bindgen__convert__closures__invoke2_mut__hb2d697ff728771e5: (a: number, b: number, c: number, d: number) => void;
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;

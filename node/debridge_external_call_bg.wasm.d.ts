@@ -2,6 +2,10 @@
 /* eslint-disable */
 export const memory: WebAssembly.Memory;
 export function __wbg_externalinstructionwrapper_free(a: number): void;
+export function __wbg_externalinstructionwrapperwithposition_free(a: number): void;
+export function externalinstructionwrapperwithposition_position_start(a: number): number;
+export function externalinstructionwrapperwithposition_position_end(a: number): number;
+export function externalinstructionwrapperwithposition_instruction(a: number): number;
 export function __wbg_externalinstructionwrapperiterator_free(a: number): void;
 export function externalinstructionwrapperiterator_next(a: number): number;
 export function externalinstructionwrapper_new(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number): void;
@@ -61,8 +65,8 @@ export function externalinstructionwrapper_expenses(a: number, b: number): void;
 export function __wbindgen_malloc(a: number, b: number): number;
 export function __wbindgen_realloc(a: number, b: number, c: number, d: number): number;
 export const __wbindgen_export_2: WebAssembly.Table;
-export function wasm_bindgen__convert__closures__invoke1_mut__h8ee98e8a5488f2f4(a: number, b: number, c: number): void;
+export function _dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h42ff0aa69fe579c9(a: number, b: number, c: number): void;
 export function __wbindgen_add_to_stack_pointer(a: number): number;
 export function __wbindgen_free(a: number, b: number, c: number): void;
 export function __wbindgen_exn_store(a: number): void;
-export function wasm_bindgen__convert__closures__invoke2_mut__h094bb2c70e93e168(a: number, b: number, c: number, d: number): void;
+export function wasm_bindgen__convert__closures__invoke2_mut__hb2d697ff728771e5(a: number, b: number, c: number, d: number): void;

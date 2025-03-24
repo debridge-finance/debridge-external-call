@@ -173,7 +173,22 @@ export class ExternalInstructionWrapper {
 export class ExternalInstructionWrapperIterator {
   free(): void;
 /**
-* @returns {ExternalInstructionWrapper | undefined}
+* @returns {ExternalInstructionWrapperWithPosition | undefined}
 */
-  next(): ExternalInstructionWrapper | undefined;
+  next(): ExternalInstructionWrapperWithPosition | undefined;
+}
+/**
+*/
+export class ExternalInstructionWrapperWithPosition {
+  free(): void;
+/**
+* @returns {ExternalInstructionWrapper}
+*/
+  instruction(): ExternalInstructionWrapper;
+/**
+*/
+  readonly position_end: bigint;
+/**
+*/
+  readonly position_start: bigint;
 }
